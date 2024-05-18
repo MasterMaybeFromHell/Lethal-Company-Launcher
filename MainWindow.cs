@@ -77,6 +77,7 @@ namespace LethalCompanyLauncher
             StatusText2.Text = "Installed";
             _progressText.Text = "100%";
             MainButton.Text = "Lethal Company Installed";
+            ProgressBar.Value = 100;
             _installed = true;
             HelpMenu.Enabled = true;
         }
@@ -93,6 +94,8 @@ namespace LethalCompanyLauncher
             {
                 ZipFile.ExtractToDirectory(_directory + _fileName, _directory);
             }
+            File.Delete(_directory + _fileName);
+            _installed = true;
         }
 
         private void SaveData()
@@ -124,6 +127,15 @@ namespace LethalCompanyLauncher
                     _installed = Convert.ToBoolean(streamReader.ReadLine());
                 }
                 LethalCompanyLocation.Text = _directory;
+
+                if (_installed)
+                {
+                    StatusText2.Text = "Installed";
+                    _progressText.Text = "100%";
+                    MainButton.Text = "Lethal Company Installed";
+                    MainButton.Enabled = false;
+                    ProgressBar.Value = 100;
+                }
             }
             else
             { 
