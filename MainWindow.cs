@@ -33,7 +33,7 @@ namespace LethalCompanyLauncher
             if (FolderBrowser.ShowDialog() == DialogResult.OK)
             {
                 _directory = FolderBrowser.SelectedPath;
-                LethalCompanyLocationText.Text = FolderBrowser.SelectedPath;
+                LethalCompanyLocation.Text = FolderBrowser.SelectedPath;
             }
         }
 
@@ -103,12 +103,12 @@ namespace LethalCompanyLauncher
             }
             else
             {
-                if (!string.IsNullOrEmpty(LethalCompanyLocationText.Text))
-                { _directory = LethalCompanyLocationText.Text; }
+                if (!string.IsNullOrEmpty(LethalCompanyLocation.Text))
+                { _directory = LethalCompanyLocation.Text; }
 
                 using (StreamWriter streamWriter = new StreamWriter("laucherData.data"))
                 {
-                    streamWriter.WriteLine(LethalCompanyLocationText.Text);
+                    streamWriter.WriteLine(LethalCompanyLocation.Text);
                     streamWriter.WriteLine(_installed);
                 }
             }
@@ -123,7 +123,7 @@ namespace LethalCompanyLauncher
                     _directory = streamReader.ReadLine();
                     _installed = Convert.ToBoolean(streamReader.ReadLine());
                 }
-                LethalCompanyLocationText.Text = _directory;
+                LethalCompanyLocation.Text = _directory;
             }
             else
             { 
